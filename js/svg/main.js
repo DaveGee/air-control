@@ -6,9 +6,7 @@ $(document).ready(function() {
 
     window.Sky = new Raphael(document.getElementById("sky"), w, h);
 
-    console.log(Raphael.angle(100,100,0,0));
-
-    return;
+    window.Sky.position = $("#sky").position();
 
     window.Airspace = new Airspace(window, window.Sky, w, h);
 
@@ -22,7 +20,7 @@ $(document).ready(function() {
         }
     });
 
-    window.Airspace.addPlane(300, 10, 135, 100);
+    window.Airspace.addPlane(300, 10, -15, 100);
     window.Airspace.addPlane(200, 200, 0, 120);
     window.Airspace.addPlane(10, 10, 270, 80);
 });

@@ -128,10 +128,13 @@ Plane.prototype.deselect = function() {
 
 Plane.prototype.addWaypoint = function(ax, ay) {
 
-    if(this.goneTooFar || ax + 5 > this.sky.width || ax - 5 < 0
-        || ay + 5 > this.sky.height || ay - 5 < 0) { this.deselect(); this.goneTooFar = true; return; }
+    var rx = ax - this.airspace.sky.position.left;
+    var ry = ay - this.airspace.sky.position.top;
 
-    var wp = this.sky.circle(ax, ay, 3).attr({stroke: "#aaa"});
+    if(this.goneTooFar || rx + 5 > this.sky.width || rx - 5 < 0
+        || ry + 5 > this.sky.height || ry - 5 < 0) { this.deselect(); this.goneTooFar = true; return; }
 
-    this.currentPath.push({x: ax, y: ay, body: wp, headingTo: false});
+    var wp = this.sky.circle(rx, ry, 3).attr({stroke: "#aaa"});
+
+    this.currentPath.push({x: rx, y: ry, body: wp, headingTo: false});
 };
